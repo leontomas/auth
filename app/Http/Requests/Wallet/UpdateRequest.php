@@ -32,7 +32,6 @@ class UpdateRequest extends FormRequest
             'name' => 'string|max:50',
             'description' => 'string|max:50',
             'money' => 'between:-1, 9999999.9999',
-            'company_id' => 'integer|exists:companies,id'
         ];
     }
 }

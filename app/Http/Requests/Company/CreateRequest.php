@@ -18,6 +18,9 @@ class CreateRequest extends FormRequest
         }else{
             return false;
         }
+     
+        $validated['user_id'] = Auth::user()->id;
+
     }
 
     /**
@@ -29,8 +32,7 @@ class CreateRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:50', 
-            'address' => 'required|string|max:50', 
-            'user_id' => 'required|integer|exists:users,id'.$this->id,
+            'address' => 'required|string|max:50',
         ];
     }
 }

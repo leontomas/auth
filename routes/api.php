@@ -6,12 +6,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\WalletController;
 
-Route::group(['middleware' => ['guest']], function()
+Route::middleware(['auth:guest'])->group(function()
 {
-/* This is a group of routes that are only accessible to guests. */
-	Route::post('/login', [AuthController::class, 'login']);
-	Route::post('/register', [AuthController::class, 'register']);
-
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
 });
 
 Route::middleware(['auth:user'])->group(function()

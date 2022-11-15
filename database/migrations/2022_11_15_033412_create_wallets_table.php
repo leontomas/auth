@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name')->nullable(false);
             $table->string('description');
             $table->decimal('money', 8, 4)->nullable(false)->unsignedBiginteger();
-            $table->unsignedBigInteger('company_id')->nullable(false);
+            $table->unsignedBigInteger('user_id')->nullable(false);
             $table->timestamps();
         });
     }

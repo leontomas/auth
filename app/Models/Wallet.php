@@ -13,7 +13,7 @@ class Wallet extends Model
         'name', 
         'description', 
         'money',
-        'company_id'
+        'user_id'
     ];
 
     public function company(){

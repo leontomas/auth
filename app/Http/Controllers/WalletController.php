@@ -9,6 +9,7 @@ use App\Http\Requests\Wallet\ReadRequest;
 use App\Http\Requests\Wallet\ListRequest;
 use App\Http\Requests\Wallet\UpdateRequest;
 use App\Http\Requests\Wallet\DeleteRequest;
+use Illuminate\Support\Facades\Auth;
 
 class WalletController extends Controller
 {
@@ -17,6 +18,9 @@ class WalletController extends Controller
         $validated = $request->safe()->all();
 
         $status = 0;
+
+        // $validated['user_id'] = auth()->user()->id;
+        $validated['user_id'] = Auth::user()->id;
 
         $data = Wallet::create($validated);
 

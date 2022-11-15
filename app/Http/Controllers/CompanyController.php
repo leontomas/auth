@@ -9,16 +9,21 @@ use App\Http\Requests\Company\ReadRequest;
 use App\Http\Requests\Company\ListRequest;
 use App\Http\Requests\Company\UpdateRequest;
 use App\Http\Requests\Company\DeleteRequest;
-
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
     public function create(CreateRequest $request)
     {
+        /* A method that is defined in the `App\Http\Requests\Request` class. */
         $validated = $request->safe()->all();
 
         $status = 0;
 
+        $validated['user_id'] = Auth::user()->id;
+
+        print_r($validated);
+        die;
         $data = Company::create($validated);
 
         if($data) $status = 1;

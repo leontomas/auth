@@ -6,6 +6,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -36,8 +37,12 @@ class AuthController extends Controller
         ]);
     }
 
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request,User $user)
     {
+        /* Auth::loginUsingId($user->id);
+
+        print_r(Auth::loginUsingId($user->id));
+        die; */
         $validated = $request->safe()->only(['username', 'password']);
 
         $data = User::where('username', $validated['username'])->first();

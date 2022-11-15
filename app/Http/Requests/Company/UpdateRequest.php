@@ -30,8 +30,7 @@ class UpdateRequest extends FormRequest
         return [
             'id' => 'required|integer',
             'name' => 'string|max:50', 
-            'address' => 'string|max:50', 
-            'user_id' => 'integer|exists:users,id',
+            'address' => 'string|max:50',
         ];
     }
 }
