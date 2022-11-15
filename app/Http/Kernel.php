@@ -63,5 +63,11 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'ability' => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
+        'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
+        'masteradmin' => \App\Http\Middleware\CheckIfMasteradmin::class,
+        'admin' => \App\Http\Middleware\CheckIfAdmin::class,
+        'manager' => \App\Http\Middleware\CheckIfManager::class,
+        'client' => \App\Http\Middleware\CheckIfClient::class,
     ];
 }
