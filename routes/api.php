@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\SampleController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\WalletController;
 
 Route::group(['middleware' => ['guest']], function()
 {
@@ -28,12 +29,22 @@ Route::middleware(['auth:user'])->group(function()
         Route::post('/delete', [UserController::class, 'delete']);
     });
 
-    Route::prefix('sample')->group(function()
+    Route::prefix('company')->group(function()
     {
-        Route::post('/masteradmin', [SampleController::class, 'masteradmin']);
-        Route::post('/admin', [SampleController::class, 'admin']);
-        Route::post('/manager', [SampleController::class, 'manager']);
-        Route::post('/client', [SampleController::class, 'client']);
+        Route::post('/create', [CompanyController::class, 'create']);
+        Route::post('/read', [CompanyController::class, 'read']);
+        Route::post('/list', [CompanyController::class, 'list']);
+        Route::post('/update', [CompanyController::class, 'update']);
+        Route::post('/delete', [CompanyController::class, 'delete']);
+    });
+
+    Route::prefix('wallet')->group(function()
+    {
+        Route::post('/create', [WalletController::class, 'create']);
+        Route::post('/read', [WalletController::class, 'read']);
+        Route::post('/list', [WalletController::class, 'list']);
+        Route::post('/update', [WalletController::class, 'update']);
+        Route::post('/delete', [WalletController::class, 'delete']);
     });
 
 });
