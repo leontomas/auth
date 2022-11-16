@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable(false);
             $table->timestamps();
         });
+        DB::update("ALTER TABLE wallets AUTO_INCREMENT = 1001;");
     }
 
     /**

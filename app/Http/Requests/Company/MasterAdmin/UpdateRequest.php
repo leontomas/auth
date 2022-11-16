@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Company\MasterAdmin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -28,12 +28,9 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            
             'id' => 'required|integer',
-            'username' => 'max:50|unique:users,username,'.$this->id,
-            'first_name' => 'string|max:50',
-            'last_name' => 'string|max:50',
-
+            'name' => 'string|max:50', 
+            'address' => 'string|max:50',
         ];
     }
 }

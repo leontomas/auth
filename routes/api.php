@@ -5,8 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\MasterAdmin\MasterAdminController;
 
-Route::middleware(['auth:guest'])->group(function()
+Route::middleware(['guest'])->group(function()
 {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
@@ -43,6 +44,27 @@ Route::middleware(['auth:user'])->group(function()
         Route::post('/list', [WalletController::class, 'list']);
         Route::post('/update', [WalletController::class, 'update']);
         Route::post('/delete', [WalletController::class, 'delete']);
+    });
+
+    Route::prefix('masteradmin')->group(function()
+    {
+        Route::prefix('company')->group(function()
+        {
+            /* company controller route */
+            Route::post('/read', [MasterAdminController::class, 'read']);
+            Route::post('/list', [MasterAdminController::class, 'list']);
+            Route::post('/update', [MasterAdminController::class, 'update']);
+            Route::post('/delete', [MasterAdminController::class, 'delete']);
+        });
+        
+        Route::prefix('wallet')->group(function()
+        {
+            /* wallet controller route */
+            Route::post('/show', [MasterAdminController::class, 'show']);
+            Route::post('/index', [MasterAdminController::class, 'index']);
+            Route::post('/edit', [MasterAdminController::class, 'edit']);
+            Route::post('/destroy', [MasterAdminController::class, 'destroy']);
+        });
     });
 
 });

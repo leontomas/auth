@@ -36,6 +36,17 @@ class AuthController extends Controller
             'status' => 1,
         ]);
     }
+/* 
+    public function getProfile(Request $request, $id)
+    {
+         if(auth()->id() == $id) {
+              // valid user
+              $user_info = auth()->user();
+              return view('userprofile.show', compact("user_info"));
+         } else {
+              //not allowed
+         }
+    } */
 
     public function login(LoginRequest $request,User $user)
     {

@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Wallet;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Wallet\CreateRequest;
 use App\Http\Requests\Wallet\ReadRequest;
 use App\Http\Requests\Wallet\ListRequest;
 use App\Http\Requests\Wallet\UpdateRequest;
 use App\Http\Requests\Wallet\DeleteRequest;
-use Illuminate\Support\Facades\Auth;
 
 class WalletController extends Controller
 {
@@ -46,6 +46,7 @@ class WalletController extends Controller
             'data' => $data,
             'status' => $status,
         ]);
+        
     }
 
     public function list(ListRequest $request){

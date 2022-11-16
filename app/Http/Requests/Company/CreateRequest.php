@@ -18,9 +18,6 @@ class CreateRequest extends FormRequest
         }else{
             return false;
         }
-     
-        $validated['user_id'] = Auth::user()->id;
-
     }
 
     /**
