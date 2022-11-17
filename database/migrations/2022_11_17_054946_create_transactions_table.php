@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -14,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('wallets', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable(false);
-            $table->string('description');
-            $table->decimal('amount', 8, 4)->nullable(false)->unsignedBiginteger();
+            $table->decimal('amount', 8,4)->nullable(false)->unsignedBigInteger();
+            $table->enum('type', ['income', 'expense'])->nullable(false);
+            $table->string('note', 250)->nullable(false);
             $table->unsignedBigInteger('user_id')->nullable(false);
+            $table->unsignedBigInteger('wallet_id')->nullable(false);
             $table->timestamps();
         });
-        DB::update("ALTER TABLE wallets AUTO_INCREMENT = 1001;");
     }
 
     /**
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wallets');
+        Schema::dropIfExists('transactions');
     }
 };

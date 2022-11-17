@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Wallet;
+namespace App\Http\Requests\Transaction;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +13,8 @@ class CreateRequest extends FormRequest
      */
     public function authorize()
     {
-        if(auth()->user()->role == 'admin'){
+        if(auth()->user()->role == 'masteradmin' || 
+        auth()->user()->role == 'admin'){
             return true;
         }else{
             return false;
@@ -28,9 +29,11 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:50',
-            'description' => 'required|string|max:50',
+
             'amount' => 'between:-1, 9999999.9999',
+            'type' => 'required|string|in:income,expense',
+            'note' => 'required|string|max:50',
+
         ];
     }
 }

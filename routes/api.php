@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\WalletController;
+
 use App\Http\Controllers\MasterAdmin\MasterAdminController;
 
 Route::middleware(['guest'])->group(function()
@@ -66,5 +68,27 @@ Route::middleware(['auth:user'])->group(function()
             Route::post('/destroy', [MasterAdminController::class, 'destroy']);
         });
     });
+});
+    
+Route::post('/clear', function() {
+    
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    Artisan::call('config:cache');
+    Artisan::call('route:cache');
+    Artisan::call('optimize');
+
+    return "
+    cache:clear
+    config:clear
+    config:cache
+    view:clear
+    route:clear
+    route:cache
+    optimize
+    Cleared!
+    ";
 
 });

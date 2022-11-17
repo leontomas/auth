@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\MasterAdmin;
 
-use App\Models\User;
-use App\Models\Wallet;
 use App\Models\Company;
+use App\Models\Wallet;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Company\MasterAdmin\ReadRequest;
